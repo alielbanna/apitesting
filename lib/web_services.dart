@@ -10,6 +10,9 @@ abstract class WebServices {
 
   @GET('users')
   Future<List<User>> getAllUsers();
+
+  @GET('users/{id}')
+  Future<User> getUserById(@Path('id') int userId);
 }
 
 Dio createAndSetupDio() {

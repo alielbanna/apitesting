@@ -11,4 +11,10 @@ class Repository {
 
     return response.map((user) => User.fromJson(user.toJson())).toList();
   }
+
+  Future<User> getUserById(int userId) async {
+    var response = await webServices.getUserById(userId);
+
+    return User.fromJson(response.toJson());
+  }
 }

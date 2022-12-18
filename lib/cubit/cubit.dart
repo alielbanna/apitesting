@@ -12,4 +12,10 @@ class MyCubit extends Cubit<States> {
       emit(GetAllUsersState(usersList));
     }).catchError((error) {});
   }
+
+  void emitGetUserDetails(int userId) {
+    repository.getUserById(userId).then((userDetails) {
+      emit(GetUserDetailsState(userDetails));
+    }).catchError((error) {});
+  }
 }
