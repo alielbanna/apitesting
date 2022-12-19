@@ -15,3 +15,15 @@ class GetUserDetailsState extends States {
 
   GetUserDetailsState(this.userDetails);
 }
+
+class CreateNewUserState extends States {
+  final User newUser;
+
+  CreateNewUserState(this.newUser);
+}
+
+class DeleteUserState extends States {
+  final dynamic data;
+
+  DeleteUserState(this.data);
+}

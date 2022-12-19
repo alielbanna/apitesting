@@ -12,14 +12,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<User> usersList = [];
-  User userDetails = User();
+  //List<User> usersList = [];
+  //User userDetails = User();
+  User newUser = User();
 
   @override
   void initState() {
     super.initState();
     // BlocProvider.of<MyCubit>(context).emitGetAllUsers();
-    BlocProvider.of<MyCubit>(context).emitGetUserDetails(6275);
+    //BlocProvider.of<MyCubit>(context).emitGetUserDetails(6275);
+    // BlocProvider.of<MyCubit>(context).emitCreateNewUser(
+    //   User(
+    //       name: 'Ali', gender: 'male', email: 'ali@mail.com', status: 'active'),
+    // );
+
+    BlocProvider.of<MyCubit>(context).emitDeleteUser(6267);
   }
 
   @override
@@ -55,15 +62,52 @@ class _HomeScreenState extends State<HomeScreen> {
           //   },
           // ),
 
+          // BlocBuilder<MyCubit, States>(
+          //   builder: (context, state) {
+          //     if (state is GetUserDetailsState) {
+          //       userDetails = state.userDetails;
+          //       return Container(
+          //         height: 50.0,
+          //         color: Colors.grey,
+          //         child: Center(
+          //           child: Text(userDetails.name.toString()),
+          //         ),
+          //       );
+          //     } else {
+          //       return const Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     }
+          //   },
+          // ),
+
+          // BlocBuilder<MyCubit, States>(
+          //   builder: (context, state) {
+          //     if (state is CreateNewUserState) {
+          //       newUser = state.newUser;
+          //       return Container(
+          //         height: 50.0,
+          //         color: Colors.grey,
+          //         child: Center(
+          //           child: Text(newUser.name.toString()),
+          //         ),
+          //       );
+          //     } else {
+          //       return const Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     }
+          //   },
+          // ),
+
           BlocBuilder<MyCubit, States>(
             builder: (context, state) {
-              if (state is GetUserDetailsState) {
-                userDetails = state.userDetails;
+              if (state is DeleteUserState) {
                 return Container(
                   height: 50.0,
                   color: Colors.grey,
-                  child: Center(
-                    child: Text(userDetails.name.toString()),
+                  child: const Center(
+                    child: Text('User Deleted'),
                   ),
                 );
               } else {
