@@ -1,29 +1,45 @@
-import 'package:apitesting/user.dart';
+// import 'package:apitesting/user.dart';
+//
+// abstract class States {}
+//
+// class InitialState extends States {}
+//
+// class GetAllUsersState extends States {
+//   final List<User> allUsersList;
+//
+//   GetAllUsersState(this.allUsersList);
+// }
+//
+// class GetUserDetailsState extends States {
+//   final User userDetails;
+//
+//   GetUserDetailsState(this.userDetails);
+// }
+//
+// class CreateNewUserState extends States {
+//   final User newUser;
+//
+//   CreateNewUserState(this.newUser);
+// }
+//
+// class DeleteUserState extends States {
+//   final dynamic data;
+//
+//   DeleteUserState(this.data);
+// }
 
-abstract class States {}
+import 'package:apitesting/network_exceptions.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class InitialState extends States {}
+part 'state.freezed.dart';
 
-class GetAllUsersState extends States {
-  final List<User> allUsersList;
+@freezed
+class ResultState<T> with _$ResultState<T> {
+  const factory ResultState.idle() = Idle<T>;
+  const factory ResultState.loading() = Loading<T>;
 
-  GetAllUsersState(this.allUsersList);
-}
+  const factory ResultState.success(T data) = Success<T>;
 
-class GetUserDetailsState extends States {
-  final User userDetails;
-
-  GetUserDetailsState(this.userDetails);
-}
-
-class CreateNewUserState extends States {
-  final User newUser;
-
-  CreateNewUserState(this.newUser);
-}
-
-class DeleteUserState extends States {
-  final dynamic data;
-
-  DeleteUserState(this.data);
+  const factory ResultState.error(NetworkExceptions networkExceptions) =
+      Error<T>;
 }
